@@ -4,7 +4,7 @@ set -ex
 AWS_REGION="us-east-2"
 
 ARTIFACT=`packer build -machine-readable packer-demo.json | tee packer-build.log | awk -F, '$0 ~/artifact,0,id/ {print $6}'`
-if [ $ARTIFACT = '' ]; then
+if [ "${ARTIFACT}" == "" ]; then
     echo "FAILED TO BUILD PACKER IMAGE! Message:"
     cat packer-build.log
     exit 1
